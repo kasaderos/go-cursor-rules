@@ -1,0 +1,47 @@
+---
+alwaysApply: true
+---
+
+Keep format style:
+1. block should not start with a whitespace (wsl)
+2. comment should end in a period (godot)
+3. return statements should not be cuddled if block has more than two lines (wsl)
+4. assignments should only be cuddled with other assignments (wsl)
+5. unexported-return: exported func smth returns unexported type smth, which can be annoying to use (revive)
+6. revive: enforce-switch-style: switch must have a default case clause
+7. noinlineerr: avoid inline error handling using `if err := ...; err != nil`; use plain assignment `err := ...`
+8. embeddedstructfieldcheck: there must be an empty line separating embedded fields from regular fields
+9. do not use tc := tc local variable in tests
+10. use below golang package imports formatting structure:
+<standard packages>
+<empty line>
+<external packages>
+<empty line>
+<external gitlab or github packages>
+<empty line>
+<current project packages>
+ex.
+import (
+    "fmt"
+
+    "github.com/google/uuid"
+
+    "gitlab.com/abc/utils"
+
+    "threat/internal/model"
+) 
+11. if it's a test function use below rules:
+do not use helper function
+all test should use test suite or table tests like
+tests := []struct{
+    name string
+    // fields
+
+    expected SomeExpected
+    err      error
+}{
+    {
+        name: ""
+    }
+}
+or test suite that uses mockery 
